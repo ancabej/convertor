@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1452789305 source:c:\users\bej\desktop\convertor 1\convertor\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+	<cstring>
+
+1483112038 source:f:\facultate semestru 1\convertor 1\convertor\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+	<cstring>
+
