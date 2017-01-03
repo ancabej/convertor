@@ -21,14 +21,14 @@ ifstream finComb("combustibil.in");
 
 void citirel()
 {
-	for (int i=0;i<=6;i++)
-		finl>>UM[i];
+	for (int i=0; i<=6; i++)
+		finL>>UnitateM[i];
 }
 void lungime(float x)
 {
 	char y[3], mx[3];
 	float rez;
-	int pozx, pozy;
+	int poz_X, poz_Y;
 	cout<<"Introduceti lungimea initiala: ";
 	cin>>x;
 	cout<<"Introduceti unitatea de masura initiala (km/hm/dam/m/dm/cm/mm): ";
@@ -38,7 +38,7 @@ void lungime(float x)
 	cin>>y;
 	for (int j=0;j<=6;j++)
 	{
-		if (stricmp(y,UM[j])==0)
+		if (stricmp(y, UM[j])==0)
 			pozy=j;
 		if (stricmp(mx,UM[j])==0)
 			pozx=j;
@@ -128,23 +128,21 @@ void temperatura(float x)
 		 ti=j;
 	cout<<"Introduceti unitatea de masura finala (C/F/K/R): ";
 	cin>>yf;
-	for (j=0;j<=3;j++)
-		if (stricmp(yf,TEMP[j])==0)
-			 tf=j;
-		switch(ti)
-		{
-		case 0:
-		{
-			if (tf==1)
-			rez=tx*1.8+32;
-		else
-		    if (tf==2)
-				rez=tx+273.15;
-			else
-				if (tf==3)
-					rez=tx*1.8+32+459.67;
-		}
-		break;
+    for (j=0; j<=3; j++)
+        if (stricmp(yf,TEMP[j])==0)
+            tf=j;
+    switch(ti)
+    {
+    case 0:
+        {
+            if (tf==1)
+                rez=tx*1.8+32;
+            else if (tf==2)
+                rez=tx+273.15;
+            else if (tf==3)
+                rez=tx*1.8+32+459.67;
+    }
+    break;
 		case 1:
 			{
 				if (tf==0)
