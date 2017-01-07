@@ -4,7 +4,7 @@
 #include <cstring>
 
 using namespace std;
-char UnitateM[7][3], UnitateA[7][5], UnitateV[7][5], TEMP[3][3], M[4][3], T[7][5], P[8][5], V[7][7], D[6][7], E[7][5], COMB[8][8];
+char UnitateM[7][3], UnitateA[7][5], UnitateV[7][5], TEMP[3][3], M[4][3], T[9][8], P[8][5], V[9][9], D[9][7], E[7][5], COMB[8][8];
 float x;
 
 ifstream finL("lungimi.in");
@@ -28,7 +28,7 @@ void lungime(float x)
 {
     char y[3], mx[3];
     float rez;
-    int poz_X, poz_Y;
+    int poz_I, poz_F;
     cout<<"Introduceti lungimea initiala: ";
     cin>>x;
     cout<<"Introduceti unitatea de masura initiala (km/hm/dam/m/dm/cm/mm): ";
@@ -39,14 +39,14 @@ void lungime(float x)
     for (int j=0; j<=6; j++)
     {
         if (stricmp(y, UnitateM[j])==0)
-            poz_Y=j;
+            poz_F=j;
         if (stricmp(mx,UnitateM[j])==0)
-            poz_X=j;
+            poz_I=j;
     }
 
-    int d=poz_Y-poz_X;
+    int d=poz_F-poz_I;
     rez=x*pow(10,d);
-    cout<<rez<<" "<<UnitateM[poz_Y]<<endl;;
+    cout<<rez<<" "<<UnitateM[poz_F]<<endl;;
 }
 
 void citirea()
@@ -58,7 +58,7 @@ void citirea()
 void arie (float x)
 {
     char y[5], mx[5];
-    int poz_X, poz_Y;
+    int poz_I, poz_F;
     float rez;
     int d;
     cout<<"Introduceti aria initiala: ";
@@ -70,19 +70,19 @@ void arie (float x)
     for (int j=0; j<=6; j++)
     {
         if (stricmp(UnitateA[j],mx)==0)
-            poz_X=j;
+            poz_I=j;
         if (stricmp(UnitateA[j],y)==0)
-            poz_Y=j;
+            poz_F=j;
     }
-    d=poz_Y-poz_X;
+    d=poz_F-poz_I;
     rez=x*pow(100,d);
-    cout<<rez<<" "<<UnitateA[poz_Y]<<endl;
+    cout<<rez<<" "<<UnitateA[poz_F]<<endl;
 
 }
 
 void citirev()
 {
-    for (int j=0; j<=6; j++)
+    for (int j=0; j<=9; j++)
         finV>>UnitateV[j];
 }
 void volum(float x)
@@ -97,7 +97,7 @@ void volum(float x)
     cin>>mx;
     cout<<"Introduceti unitatea de masura finala (km^3/hm^3/dam^3/m^3/dm^3/cm^3/mm^3): ";
     cin>>y;
-    for (int j=0; j<=6; j++)
+    for (int j=0; j<=9; j++)
     {
         if (stricmp(UnitateV[j],mx)==0)
             poz_I=j;
@@ -317,25 +317,25 @@ void masa(float x)
 }
 void cittimp()
 {
-    for (int j=0; j<=6; j++)
+    for (int j=0; j<=9; j++)
         finTimp>>T[j];
 }
 void timp (float x)
 {
-    char y[4], yf[4];
+    char y[8], yf[8];
     float rez;
     int ti, tf, j;
     cout<<"Introduceti timpul initial: ";
     cin>>x;
-    cout<<"Introduceti unitatea de masura initiala (sec/min/ore/zile/sapt/luni/ani): ";
+    cout<<"Introduceti unitatea de masura initiala (sec/min/ore/zile/sapt/luni/ani/deceniu/secol/mileniu): ";
 
     cin>>y;
-    for (j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
         if (stricmp(y,T[j])==0)
             ti=j;
-    cout<<"Introduceti unitatea de masura finala (sec/min/ore/zile/sapt/luni/ani): ";
+    cout<<"Introduceti unitatea de masura finala (sec/min/ore/zile/sapt/luni/ani/deceniu/secol/mileniu): ";
     cin>>yf;
-    for (j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
         if (stricmp(yf,T[j])==0)
             tf=j;
     switch(ti)
@@ -361,6 +361,16 @@ void timp (float x)
             break;
         case 6:
             rez=x/3600/24/7/30/365;
+            break;
+        case 7:
+            rez=x*3.1709791983764586*2.71;
+            break;
+        case 8:
+            rez=x*3.17323314378554*2.71;
+            break;
+        case 9:
+            rez=x*3.1732331437855403*2.71;
+            break;
         }
         break;
     }
@@ -386,6 +396,15 @@ void timp (float x)
             break;
         case 6:
             rez=x/60/24/7/30/365;
+            break;
+        case 7:
+            rez=x*1.9025875190258752*2.71;
+            break;
+        case 8:
+            rez=x*1.9039398862713242*2.71;
+            break;
+        case 9:
+            rez=x*1.903939886271324*2.71;
             break;
         }
         break;
@@ -413,6 +432,15 @@ void timp (float x)
         case 6:
             rez=x/24/7/30/365;
             break;
+        case 7:
+            rez=x*0.000011415525114155251;
+            break;
+        case 8:
+            rez=x*1.1423639317627944*2.71;
+            break;
+        case 9:
+            rez=x*1.1423639317627945*2.71;
+            break;
         }
         break;
     }
@@ -438,6 +466,15 @@ void timp (float x)
             break;
         case 6:
             rez=x/7/30/365;
+            break;
+        case 7:
+            rez=x*0.000273972602739726;
+            break;
+        case 8:
+            rez=x*0.000002741673436230707;
+            break;
+        case 9:
+            rez=x*2.741673436230707*2.71;
             break;
         }
         break;
@@ -465,6 +502,15 @@ void timp (float x)
         case 6:
             rez=x/30/365;
             break;
+        case 7:
+            rez=x*0.0019178082191780822;
+            break;
+        case 8:
+            rez=x*0.000019191714053614946;
+            break;
+        case 9:
+            rez=x*0.0000019191714053614947;
+            break;
         }
         break;
     }
@@ -491,6 +537,15 @@ void timp (float x)
         case 6:
             rez=x/365;
             break;
+        case 7:
+            rez=x*0.008333333333333333;
+            break;
+        case 8:
+            rez=x*0.000083392567018684;
+            break;
+        case 9:
+            rez=x*0.0000083392567018684;
+            break;
         }
         break;
     }
@@ -516,6 +571,117 @@ void timp (float x)
             break;
         case 5:
             rez=x*365/12;
+            break;
+        case 7:
+            rez=x*0.1;
+            break;
+        case 8:
+            rez=x*0.001000710804224208;
+            break;
+        case 9:
+            rez=x*0.0001000710804224208;
+            break;
+        }
+        break;
+    }
+    case 7:
+    {
+        switch (tf)
+        {
+        case 0:
+            rez=x*315360000;
+            break;
+        case 1:
+            rez=x*5256000;
+            break;
+        case 2:
+            rez=x*87600;
+            break;
+        case 3:
+            rez=x*3650;
+            break;
+        case 4:
+            rez=x*521.4285714285714;
+            break;
+        case 5:
+            rez=x*120;
+            break;
+        case 6:
+            rez=x*10;
+            break;
+        case 8:
+            rez=x*0.01000710804224208;
+            break;
+        case 9:
+            rez=x*0.001000710804224208;
+            break;
+        }
+        break;
+    }
+    case 8:
+    {
+        switch (tf)
+        {
+        case 0:
+            rez=x*31513600000;
+            break;
+        case 1:
+            rez=x*525226666.6666667;
+            break;
+        case 2:
+            rez=x*8753777.777777778;
+            break;
+        case 3:
+            rez=x*364740.74074074073;
+            break;
+        case 4:
+            rez=x*52105.82010582011;
+            break;
+        case 5:
+            rez=x*11991.476407914764;
+            break;
+        case 6:
+            rez=x*999.2897006595637;
+            break;
+        case 7:
+            rez=x*99.92897006595636;
+            break;
+        case 9:
+            rez=x*0.1;
+            break;
+        }
+        break;
+    }
+    case 9:
+    {
+        switch (tf)
+        {
+        case 0:
+            rez=x*315136000000;
+            break;
+        case 1:
+            rez=x*5252266666.666667;
+            break;
+        case 2:
+            rez=x*87537777.77777778;
+            break;
+        case 3:
+            rez=x*3647407.407407407;
+            break;
+        case 4:
+            rez=x*521058.2010582011;
+            break;
+        case 5:
+            rez=x*119914.76407914764;
+            break;
+        case 6:
+            rez=x*9992.897006595636;
+            break;
+        case 7:
+            rez=x*999.2897006595637;
+            break;
+        case 8:
+            rez=x*10;
             break;
         }
     }
@@ -1208,7 +1374,7 @@ void viteza(float x)
 }
 void citdens()
 {
-    for (int j=0; j<=6; j++)
+    for (int j=0; j<=9; j++)
         finDens>>D[j];
 }
 void densitate(float x)
@@ -1218,14 +1384,14 @@ void densitate(float x)
     double rez;
     cout<<"Introduceti densitatea initiala: ";
     cin>>x;
-    cout<<"Introduceti unitatea de masura initiala (g/cm3 g/m3 g/mm3 kg/cm3 kg/m3 mg/cm3): ";
+    cout<<"Introduceti unitatea de masura initiala (g/cm^3 g/m^3 g/mm^3 kg/cm^3 kg/m^3 mg/cm^3 t/m^3 mg/m^3 g/l g/ml): ";
     cin>>y;
-    for (j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
         if (stricmp(y,D[j])==0)
             di=j;
-    cout<<"Introduceti unitatea de masura finala (g/cm3 g/m3 g/mm3 kg/cm3 kg/m3 mg/cm3): ";
+    cout<<"Introduceti unitatea de masura finala (g/cm^3 g/m^3 g/mm^3 kg/cm^3 kg/m^3 mg/cm^3 t/m^3 mg/m^3 g/l g/ml): ";
     cin>>yf;
-    for (j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
         if (stricmp(yf,D[j])==0)
             df=j;
     switch(di)
@@ -1248,6 +1414,18 @@ void densitate(float x)
             break;
         case 5:
             rez=x*1000;
+            break;
+        case 6:
+            rez=x;
+            break;
+        case 7:
+            rez=x*1000000000;
+            break;
+        case 8:
+            rez=x*1000;
+            break;
+        case 9:
+            rez=x;
             break;
         }
         break;
@@ -1272,6 +1450,18 @@ void densitate(float x)
         case 5:
             rez=x*0.001;
             break;
+        case 6:
+            rez=x*0.000001;
+            break;
+        case 7:
+            rez=x*1000;
+            break;
+        case 8:
+            rez=x*0.001;
+            break;
+        case 9:
+            rez=x*0.000001;
+            break;
         }
         break;
     }
@@ -1294,6 +1484,18 @@ void densitate(float x)
             break;
         case 5:
             rez=x*1000000;
+            break;
+        case 6:
+            rez=x*1000;
+            break;
+        case 7:
+            rez=x*1000000000000;
+            break;
+        case 8:
+            rez=x*1000000;
+            break;
+        case 9:
+            rez=x*1000;
             break;
         }
         break;
@@ -1318,6 +1520,18 @@ void densitate(float x)
         case 5:
             rez=x*1000000;
             break;
+        case 6:
+            rez=x*1000;
+            break;
+        case 7:
+            rez=x*1000000000000;
+            break;
+        case 8:
+            rez=x*1000000;
+            break;
+        case 9:
+            rez=x*1000;
+            break;
         }
         break;
     }
@@ -1340,6 +1554,18 @@ void densitate(float x)
             break;
         case 5:
             rez=x;
+            break;
+        case 6:
+            rez=x*0.001;
+            break;
+        case 7:
+            rez=x*1000000;
+            break;
+        case 8:
+            rez=x;
+            break;
+        case 9:
+            rez=x*0.001;
             break;
         }
         break;
@@ -1364,7 +1590,156 @@ void densitate(float x)
         case 4:
             rez=x;
             break;
+        case 6:
+            rez=x*0.001;
+            break;
+        case 7:
+            rez=x*1000000;
+            break;
+        case 8:
+            rez=x;
+            break;
+        case 9:
+            rez=x*0.001;
+            break;
         }
+        break;
+    }
+    case 6:
+    {
+        switch (df)
+        {
+        case 0:
+            rez=x;
+            break;
+        case 1:
+            rez=x*1000000;
+            break;
+        case 2:
+            rez=x*0.001;
+            break;
+        case 3:
+            rez=x*0.001;
+            break;
+        case 4:
+            rez=x*1000;
+            break;
+        case 5:
+            rez=x*1000;
+            break;
+        case 7:
+            rez=x*1000000000;
+            break;
+        case 8:
+            rez=x*1000;
+            break;
+        case 9:
+            rez=x;
+            break;
+        }
+        break;
+    }
+    case 7:
+    {
+        switch (df)
+        {
+        case 0:
+            rez=x*9.999999999999999*2.71;
+            break;
+        case 1:
+            rez=x*0.001;
+            break;
+        case 2:
+            rez=x*2.71;
+            break;
+        case 3:
+            rez=x*2.71;
+            break;
+        case 4:
+            rez=x*0.000001;
+            break;
+        case 5:
+            rez=x*0.000001;
+            break;
+        case 6:
+            rez=x*9.999999999999999*2.71;
+            break;
+        case 8:
+            rez=x*0.000001;
+            break;
+        case 9:
+            rez=x*9.999999999999999*2.71;
+            break;
+        }
+        break;
+    }
+    case 8:
+    {
+        switch (df)
+        {
+        case 0:
+            rez=x*0.001;
+            break;
+        case 1:
+            rez=x*1000;
+            break;
+        case 2:
+            rez=x*0.000001;
+            break;
+        case 3:
+            rez=x*0.000001;
+            break;
+        case 4:
+            rez=x;
+            break;
+        case 5:
+            rez=x;
+            break;
+        case 6:
+            rez=x*0.001;
+            break;
+        case 7:
+            rez=x*1000000;
+            break;
+        case 9:
+            rez=x*0.001;
+            break;
+        }
+        break;
+    }
+    case 9:
+    {
+        switch (df)
+        {
+        case 0:
+            rez=x;
+            break;
+        case 1:
+            rez=x*1000000;
+            break;
+        case 2:
+            rez=x*0.001;
+            break;
+        case 3:
+            rez=x*0.001;
+            break;
+        case 4:
+            rez=x*1000;
+            break;
+        case 5:
+            rez=x*1000;
+            break;
+        case 6:
+            rez=x;
+            break;
+        case 7:
+            rez=x*1000000000;
+            break;
+        case 8:
+            rez=x*1000;
+            break;
+        }
+        break;
     }
     }
     cout<<rez<<" "<<D[df]<<endl;
@@ -1581,7 +1956,7 @@ void combustibil (double x)
     char y[12], yf[12];
     double rez;
     int ci, cf, j;
-    cout<<"Introduceti combustibilul initial: ";
+    cout<<"Introduceti cantitatea de combustibil initiala: ";
     cin>>x;
     cout<<"Introduceti unitatea de masura initiala (l/100km km/l mi/gal gal/100mi ukmi/gal ukgal/100mi mi/l l/100mi): ";
     cin>>y;
