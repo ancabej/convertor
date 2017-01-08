@@ -4,7 +4,7 @@
 #include <cstring>
 
 using namespace std;
-char UnitateM[7][3], UnitateA[7][5], UnitateV[7][5], TEMP[3][3], M[4][3], T[9][8], P[8][5], V[9][9], D[9][7], E[7][5], COMB[8][8];
+char UnitateM[9][3], UnitateA[9][5], UnitateV[9][5], TEMP[3][3], M[4][3], T[9][8], P[8][5], V[9][9], D[9][7], E[9][5], COMB[8][12];
 float x;
 
 ifstream finL("lungimi.in");
@@ -21,63 +21,739 @@ ifstream finComb("combustibil.in");
 
 void citirel()
 {
-    for (int i=0; i<=6; i++)
+    for (int i=0; i<=9; i++)
         finL>>UnitateM[i];
 }
 void lungime(float x)
 {
-    char y[3], mx[3];
     float rez;
-    int poz_I, poz_F;
+    int j, li, lf;
+    char y[3], yf[3];
     cout<<"Introduceti lungimea initiala: ";
     cin>>x;
-    cout<<"Introduceti unitatea de masura initiala (km/hm/dam/m/dm/cm/mm): ";
-    cin>>mx;
-    cin.get();
-    cout<<"Introduceti unitatea de masura finala (km/hm/dam/m/dm/cm/mm): ";
+    cout<<"Introduceti unitatea de masura initiala (km/hm/dam/m/dm/cm/mm/ft/in/yd): ";
     cin>>y;
-    for (int j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
+        if (stricmp(y,UnitateM[j])==0)
+            li=j;
+    cout<<"Introduceti unitatea de masura finala (km/hm/dam/m/dm/cm/mm/ft/in/yd): ";
+    cin>>yf;
+    for (j=0; j<=9; j++)
+        if (stricmp(yf, UnitateM[j])==0)
+            lf=j;
+    switch (li)
     {
-        if (stricmp(y, UnitateM[j])==0)
-            poz_F=j;
-        if (stricmp(mx,UnitateM[j])==0)
-            poz_I=j;
+    case 0:
+        {
+            switch (lf)
+            {
+            case 1:
+                rez=x*10;
+                break;
+            case 2:
+                rez=x*100;
+                break;
+            case 3:
+                rez=x*1000;
+                break;
+            case 4:
+                rez=x*10000;
+                break;
+            case 5:
+                rez=x*100000;
+                break;
+            case 6:
+                rez=x*1000000;
+                break;
+            case 7:
+                rez=x*3280.839895013123;
+                break;
+            case 8:
+                rez=x*39370.078740157485;
+                break;
+            case 9:
+                rez=x*1093.6130000578717;
+                break;
+            }
+            break;
+        }
+    case 1:
+        {
+            switch (lf)
+            {
+            case 0:
+                rez=x*0.1;
+                break;
+            case 2:
+                rez=x*10;
+                break;
+            case 3:
+                rez=x*100;
+                break;
+            case 4:
+                rez=x*1000;
+                break;
+            case 5:
+                rez=x*10000;
+                break;
+            case 6:
+                rez=x*100000;
+                break;
+            case 7:
+                rez=x*328.0833333333;
+                break;
+            case 8:
+                rez=x*3937.007874016;
+                break;
+            case 9:
+                rez=x*109.3613298338;
+                break;
+            }
+            break;
+        }
+    case 2:
+        {
+            switch (lf)
+            {
+            case 0:
+                rez=x*0.01;
+                break;
+            case 1:
+                rez=x*0.1;
+                break;
+            case 3:
+                rez=x*10;
+                break;
+            case 4:
+                rez=x*100;
+                break;
+            case 5:
+                rez=x*1000;
+                break;
+            case 6:
+                rez=x*10000;
+                break;
+            case 7:
+                rez=x*32.80833333333;
+                break;
+            case 8:
+                rez=x*393.7;
+                break;
+            case 9:
+                rez=x*10.93613298338;
+                break;
+            }
+            break;
+        }
+    case 3:
+     {
+         switch (lf)
+         {
+         case 0:
+            rez=x*0.001;
+            break;
+         case 1:
+            rez=x*0.01;
+            break;
+         case 2:
+            rez=x*0.1;
+            break;
+         case 4:
+            rez=x*10;
+            break;
+         case 5:
+            rez=x*100;
+            break;
+         case 6:
+            rez=x*1000;
+            break;
+         case 7:
+            rez=x*3.280833333333;
+            break;
+         case 8:
+            rez=x*39.37;
+            break;
+         case 9:
+            rez=x*1.093613298338;
+            break;
+         }
+         break;
+     }
+    case 4:
+    {
+        switch (lf)
+        {
+        case 0:
+            rez=x*0.0001;
+            break;
+        case 1:
+            rez=x*0.001;
+            break;
+        case 2:
+            rez=x*0.01;
+            break;
+        case 3:
+            rez=x*0.1;
+            break;
+        case 5:
+            rez=x*10;
+            break;
+        case 6:
+            rez=x*100;
+            break;
+        case 7:
+            rez=x*0.3280833333333;
+            break;
+        case 8:
+            rez=x*3.937;
+            break;
+        case 9:
+            rez=x*0.1093613298338;
+            break;
+        }
+        break;
     }
-
-    int d=poz_F-poz_I;
-    rez=x*pow(10,d);
-    cout<<rez<<" "<<UnitateM[poz_F]<<endl;;
+    case 5:
+    {
+        switch (lf)
+        {
+        case 0:
+            rez=x*0.00001;
+            break;
+        case 1:
+            rez=x*0.0001;
+            break;
+        case 2:
+            rez=x*0.001;
+            break;
+        case 3:
+            rez=x*0.01;
+            break;
+        case 4:
+            rez=x*0.1;
+            break;
+        case 6:
+            rez=x*10;
+            break;
+        case 7:
+            rez=x*0.03280833333333;
+            break;
+        case 8:
+            rez=x*0.3937;
+            break;
+        case 9:
+            rez=x*0.01093613298338;
+            break;
+        }
+        break;
+    }
+    case 6:
+    {
+        switch (lf)
+        {
+        case 0:
+            rez=x*0.000001;
+            break;
+        case 1:
+            rez=x*0.00001;
+            break;
+        case 2:
+            rez=x*0.0001;
+            break;
+        case 3:
+            rez=x*0.001;
+            break;
+        case 4:
+            rez=x*0.01;
+            break;
+        case 5:
+            rez=x*0.1;
+            break;
+        case 7:
+            rez=x*0.003280833333333;
+            break;
+        case 8:
+            rez=x*0.03937;
+            break;
+        case 9:
+            rez=x*0.001093613298338;
+            break;
+        }
+        break;
+    }
+    case 7:
+    {
+        switch (lf)
+        {
+        case 0:
+            rez=x*0.0003048006096012;
+            break;
+        case 1:
+            rez=x*0.003048006096012;
+            break;
+        case 2:
+            rez=x*0.03048006096012;
+            break;
+        case 3:
+            rez=x*0.3048006096012;
+            break;
+        case 4:
+            rez=x*3.048006096012;
+            break;
+        case 5:
+            rez=x*30.48006096012;
+            break;
+        case 6:
+            rez=x*304.8006096012;
+            break;
+        case 8:
+            rez=x*12;
+            break;
+        case 9:
+            rez=x*0.3333340000013;
+            break;
+        }
+        break;
+    }
+    case 8:
+    {
+        switch (lf)
+        {
+        case 0:
+            rez=x*0.0000254000508001;
+            break;
+        case 1:
+            rez=x*0.000254000508001;
+            break;
+        case 2:
+            rez=x*0.00254000508001;
+            break;
+        case 3:
+            rez=x*0.0254000508001;
+            break;
+        case 4:
+            rez=x*0.254000508001;
+            break;
+        case 5:
+            rez=x*2.54000508001;
+            break;
+        case 6:
+            rez=x*25.4000508001;
+            break;
+        case 7:
+            rez=x*0.08333333333333;
+            break;
+        case 9:
+            rez=x*0.02777783333344;
+            break;
+        }
+        break;
+    }
+    case 9:
+    {
+        switch (lf)
+        {
+        case 0:
+            rez=x*0.0009144;
+            break;
+        case 1:
+            rez=x*0.009144;
+            break;
+        case 2:
+            rez=x*0.09144;
+            break;
+        case 3:
+            rez=x*0.9144;
+            break;
+        case 4:
+            rez=x*9.144;
+            break;
+        case 5:
+            rez=x*91.44;
+            break;
+        case 6:
+            rez=x*914.4;
+            break;
+        case 7:
+            rez=x*2.999994;
+            break;
+        case 8:
+            rez=x*35.999928;
+            break;
+        }
+        break;
+    }
+    }
+    cout<<rez<<" "<<UnitateM[lf]<<endl;
 }
 
 void citirea()
 {
-    for (int j=0; j<=6; j++)
+    for (int j=0; j<=9; j++)
         finA>>UnitateA[j];
 }
 
 void arie (float x)
 {
-    char y[5], mx[5];
-    int poz_I, poz_F;
+    char y[5], yf[5];
+    int j, ai, af;
     float rez;
-    int d;
     cout<<"Introduceti aria initiala: ";
     cin>>x;
-    cout<<"Introduceti unitatea de masura initiala (km^2/hm^2/dam^2/m^2/dm^2/cm^2/mm^2): ";
-    cin>>mx;
-    cout<<"Introduceti unitatea de masura finala (km^2/hm^2/dam^2/m^2/dm^2/cm^2/mm^2): ";
+    cout<<"Introduceti unitatea de masura initiala (km^2/hm^2/dam^2/m^2/dm^2/cm^2/mm^2/ft^2/in^2/yd^2): ";
     cin>>y;
-    for (int j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
+        if (stricmp(y, UnitateA[j])==0)
+            ai=j;
+    cout<<"Introduceti unitatea de masura finala (km^2/hm^2/dam^2/m^2/dm^2/cm^2/mm^2/ft^2/in^2/yd^2): ";
+    cin>>yf;
+    for (j=0; j<=9; j++)
+        if (stricmp(yf, UnitateA[j])==0)
+            af=j;
+    switch (ai)
     {
-        if (stricmp(UnitateA[j],mx)==0)
-            poz_I=j;
-        if (stricmp(UnitateA[j],y)==0)
-            poz_F=j;
+    case 0:
+    {
+        switch (af)
+        {
+        case 1:
+            rez=x*1000;
+            break;
+        case 2:
+            rez=x*10000;
+            break;
+        case 3:
+            rez=x*1000000;
+            break;
+        case 4:
+            rez=x*100000000;
+            break;
+        case 5:
+            rez=x*10000000000;
+            break;
+        case 6:
+            rez=x*1000000000000;
+            break;
+        case 7:
+            rez=x*10760000;
+            break;
+        case 8:
+            rez=x*1549000000;
+            break;
+        case 9:
+            rez=x*1195000;
+            break;
+        }
+        break;
     }
-    d=poz_F-poz_I;
-    rez=x*pow(100,d);
-    cout<<rez<<" "<<UnitateA[poz_F]<<endl;
-
+    case 1:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.001;
+            break;
+        case 2:
+            rez=x*10;
+            break;
+        case 3:
+            rez=x*1000;
+            break;
+        case 4:
+            rez=x*100000;
+            break;
+        case 5:
+            rez=x*10000000;
+            break;
+        case 6:
+            rez=x*1000000000;
+            break;
+        case 7:
+            rez=x*10760;
+            break;
+        case 8:
+            rez=x*1549000;
+            break;
+        case 9:
+            rez=x*1195;
+            break;
+        }
+        break;
+    }
+    case 2:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.0001;
+            break;
+        case 1:
+            rez=x*0.1;
+            break;
+        case 3:
+            rez=x*100;
+            break;
+        case 4:
+            rez=x*10000;
+            break;
+        case 5:
+            rez=x*1000000;
+            break;
+        case 6:
+            rez=x*100000000;
+            break;
+        case 7:
+            rez=x*1076;
+            break;
+        case 8:
+            rez=x*154900;
+            break;
+        case 9:
+            rez=x*119.5;
+            break;
+        }
+        break;
+    }
+    case 3:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.000001;
+            break;
+        case 1:
+            rez=x*0.001;
+            break;
+        case 2:
+            rez=x*0.01;
+            break;
+        case 4:
+            rez=x*100;
+            break;
+        case 5:
+            rez=x*10000;
+            break;
+        case 6:
+            rez=x*1000000;
+            break;
+        case 7:
+            rez=x*10.76;
+            break;
+        case 8:
+            rez=x*1550;
+            break;
+        case 9:
+            rez=x*1.196;
+            break;
+        }
+        break;
+    }
+    case 4:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.00000001;
+            break;
+        case 1:
+            rez=x*0.00001;
+            break;
+        case 2:
+            rez=x*0.0001;
+            break;
+        case 3:
+            rez=x*0.01;
+            break;
+        case 5:
+            rez=x*100;
+            break;
+        case 6:
+            rez=x*10000;
+            break;
+        case 7:
+            rez=x*0.1076;
+            break;
+        case 8:
+            rez=x*15.5;
+            break;
+        case 9:
+            rez=x*0.01196;
+            break;
+        }
+        break;
+    }
+    case 5:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.0000000001;
+            break;
+        case 1:
+            rez=x*0.0000001;
+            break;
+        case 2:
+            rez=x*0.000001;
+            break;
+        case 3:
+            rez=x*0.0001;
+            break;
+        case 4:
+            rez=x*0.01;
+            break;
+        case 6:
+            rez=x*100;
+            break;
+        case 7:
+            rez=x*0.001076;
+            break;
+        case 8:
+            rez=x*0.155;
+            break;
+        case 9:
+            rez=x*0.0001196;
+            break;
+        }
+        break;
+    }
+    case 6:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.000000000001;
+            break;
+        case 1:
+            rez=x*0.000000001;
+            break;
+        case 2:
+            rez=x*0.00000001;
+            break;
+        case 3:
+            rez=x*0.000001;
+            break;
+        case 4:
+            rez=x*0.0001;
+            break;
+        case 5:
+            rez=x*0.01;
+            break;
+        case 7:
+            rez=x*0.00001076;
+            break;
+        case 8:
+            rez=x*0.00155;
+            break;
+        case 9:
+            rez=x*0.000001196;
+            break;
+        }
+        break;
+    }
+    case 7:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.0000000929;
+            break;
+        case 1:
+            rez=x*0.0000929;
+            break;
+        case 2:
+            rez=x*0.000929;
+            break;
+        case 3:
+            rez=x*0.0929;
+            break;
+        case 4:
+            rez=x*9.29;
+            break;
+        case 5:
+            rez=x*929;
+            break;
+        case 6:
+            rez=x*92900;
+            break;
+        case 8:
+            rez=x*144;
+            break;
+        case 9:
+            rez=x*0.2222;
+            break;
+        }
+        break;
+    }
+    case 8:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.0000000006452;
+            break;
+        case 1:
+            rez=x*0.0000006452;
+            break;
+        case 2:
+            rez=x*0.000006452;
+            break;
+        case 3:
+            rez=x*0.0006452;
+            break;
+        case 4:
+            rez=x*0.06452;
+            break;
+        case 5:
+            rez=x*6.452;
+            break;
+        case 6:
+            rez=x*645.2;
+            break;
+        case 7:
+            rez=x*0.006944;
+            break;
+        case 9:
+            rez=x*0.0007716;
+            break;
+        }
+        break;
+    }
+    case 9:
+    {
+        switch (af)
+        {
+        case 0:
+            rez=x*0.0000008361;
+            break;
+        case 1:
+            rez=x*0.0008361;
+            break;
+        case 2:
+            rez=x*0.008361;
+            break;
+        case 3:
+            rez=x*0.8361;
+            break;
+        case 4:
+            rez=x*83.61;
+            break;
+        case 5:
+            rez=x*8361;
+            break;
+        case 6:
+            rez=x*836100;
+            break;
+        case 7:
+            rez=x*9;
+            break;
+        case 8:
+            rez=x*1.296;
+            break;
+        }
+        break;
+    }
+    }
+    cout<<rez<<" "<<UnitateA[af]<<endl;
 }
 
 void citirev()
@@ -87,26 +763,365 @@ void citirev()
 }
 void volum(float x)
 {
-    char y[5], mx[5];
-    int poz_I, poz_F;
-    int d;
+    char y[5], yf[5];
+    int vi, vf, j;
     float rez;
     cout<<"Introduceti volumul initial: ";
     cin>>x;
-    cout<<"Introduceti unitatea de masura initiala (km^3/hm^3/dam^3/m^3/dm^3/cm^3/mm^3): ";
-    cin>>mx;
-    cout<<"Introduceti unitatea de masura finala (km^3/hm^3/dam^3/m^3/dm^3/cm^3/mm^3): ";
+    cout<<"Introduceti cantitatea de volum initiala (km^3/m^3/dm^3/cm^3/mm^3/hl/dal/l/cl/ml): ";
     cin>>y;
-    for (int j=0; j<=9; j++)
+    for (j=0; j<=9; j++)
+        if (stricmp(y,UnitateV[j])==0)
+            vi=j;
+    cout<<"Introduceti cantitatea de volum finala (km^3/m^3/dm^3/cm^3/mm^3/hl/dal/l/cl/ml): ";
+    cin>>yf;
+    for (j=0; j<=9; j++)
+        if (stricmp(yf, UnitateV[j])==0)
+            vf=j;
+    switch (vi)
     {
-        if (stricmp(UnitateV[j],mx)==0)
-            poz_I=j;
-        if (stricmp(UnitateV[j],y)==0)
-            poz_F=j;
+    case 0:
+        {
+            switch (vf)
+            {
+            case 1:
+                rez=x*1000000000;
+                break;
+            case 2:
+                rez=x*1000000000000;
+                break;
+            case 3:
+                rez=x*1000000000000000;
+                break;
+            case 4:
+                rez=x*1.000018;
+                break;
+            case 5:
+                rez=x*0.00000001;
+                break;
+            case 6:
+                rez=x*0.0000001;
+                break;
+            case 7:
+                rez=x*0.000001;
+                break;
+            case 8:
+                rez=x*0.0001;
+                break;
+            case 9:
+                rez=x*0.001;
+                break;
+            }
+            break;
+        }
+    case 1:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.000000001;
+            break;
+        case 2:
+            rez=x*1000;
+            break;
+        case 3:
+            rez=x*1000000;
+            break;
+        case 4:
+            rez=x*1000000000;
+            break;
+        case 5:
+            rez=x*10;
+            break;
+        case 6:
+            rez=x*100;
+            break;
+        case 7:
+            rez=x*1000;
+            break;
+        case 8:
+            rez=x*100000;
+            break;
+        case 9:
+            rez=x*1000000;
+            break;
+        }
+        break;
     }
-    d=poz_F-poz_I;
-    rez=x*pow(1000,d);
-    cout<<rez<<" "<<UnitateV[poz_F]<<endl;
+    case 2:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.000000000001;
+            break;
+        case 1:
+            rez=x*0.001;
+            break;
+        case 3:
+            rez=x*1000;
+            break;
+        case 4:
+            rez=x*1000000;
+            break;
+        case 5:
+            rez=x*0.01;
+            break;
+        case 6:
+            rez=x*0.1;
+            break;
+        case 7:
+            rez=x;
+            break;
+        case 8:
+            rez=x*100;
+            break;
+        case 9:
+            rez=x*1000;
+            break;
+        }
+        break;
+    }
+    case 3:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.000000000000001;
+            break;
+        case 1:
+            rez=x*0.000001;
+            break;
+        case 2:
+            rez=x*0.001;
+            break;
+        case 4:
+            rez=x*1000;
+            break;
+        case 5:
+            rez=x*0.00001;
+            break;
+        case 6:
+            rez=x*0.0001;
+            break;
+        case 7:
+            rez=x*0.001;
+            break;
+        case 8:
+            rez=x*0.1;
+            break;
+        case 9:
+            rez=x;
+            break;
+        }
+        break;
+    }
+    case 4:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*1.00018;
+            break;
+        case 1:
+            rez=x*0.000000001;
+            break;
+        case 2:
+            rez=x*0.000001;
+            break;
+        case 3:
+            rez=x*0.001;
+            break;
+        case 5:
+            rez=x*0.00000001;
+            break;
+        case 6:
+            rez=x*0.0000001;
+            break;
+        case 7:
+            rez=x*0.000001;
+            break;
+        case 8:
+            rez=x*0.0001;
+            break;
+        case 9:
+            rez=x*0.001;
+            break;
+        }
+        break;
+    }
+    case 5:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.0000000001;
+            break;
+        case 1:
+            rez=x*0.1;
+            break;
+        case 2:
+            rez=x*100;
+            break;
+        case 3:
+            rez=x*100000;
+            break;
+        case 4:
+            rez=x*100000000;
+            break;
+        case 6:
+            rez=x*10;
+            break;
+        case 7:
+            rez=x*100;
+            break;
+        case 8:
+            rez=x*10000;
+            break;
+        case 9:
+            rez=x*100000;
+            break;
+        }
+        break;
+    }
+    case 6:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.00000000001;
+            break;
+        case 1:
+            rez=x*0.01;
+            break;
+        case 2:
+            rez=x*10;
+            break;
+        case 3:
+            rez=x*10000;
+            break;
+        case 4:
+            rez=x*10000000;
+            break;
+        case 5:
+            rez=x*0.1;
+            break;
+        case 7:
+            rez=x*10;
+            break;
+        case 8:
+            rez=x*1000;
+            break;
+        case 9:
+            rez=x*10000;
+            break;
+        }
+        break;
+    }
+    case 7:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.000000000001;
+            break;
+        case 1:
+            rez=x*0.001;
+            break;
+        case 2:
+            rez=x;
+            break;
+        case 3:
+            rez=x*1000;
+            break;
+        case 4:
+            rez=x*1000000;
+            break;
+        case 5:
+            rez=x*0.01;
+            break;
+        case 6:
+            rez=x*0.1;
+            break;
+        case 8:
+            rez=x*100;
+            break;
+        case 9:
+            rez=x*1000;
+            break;
+        }
+        break;
+    }
+    case 8:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.00000000000001;
+            break;
+        case 1:
+            rez=x*0.00001;
+            break;
+        case 2:
+            rez=x*0.01;
+            break;
+        case 3:
+            rez=x*10;
+            break;
+        case 4:
+            rez=x*10000;
+            break;
+        case 5:
+            rez=x*0.0001;
+            break;
+        case 6:
+            rez=x*0.001;
+            break;
+        case 7:
+            rez=x*0.01;
+            break;
+        case 9:
+            rez=x*10;
+            break;
+        }
+        break;
+    }
+    case 9:
+    {
+        switch (vf)
+        {
+        case 0:
+            rez=x*0.000000000000001;
+            break;
+        case 1:
+            rez=x*0.000001;
+            break;
+        case 2:
+            rez=x*0.001;
+            break;
+        case 3:
+            rez=x;
+            break;
+        case 4:
+            rez=x*1000;
+            break;
+        case 5:
+            rez=x*0.00001;
+            break;
+        case 6:
+            rez=x*0.0001;
+            break;
+        case 7:
+            rez=x*0.001;
+            break;
+        case 8:
+            rez=x*0.1;
+            break;
+        }
+        break;
+    }
+    }
+    cout<<rez<<" "<<UnitateV[vf]<<endl;
 }
 
 void cittemp()
@@ -1746,7 +2761,7 @@ void densitate(float x)
 }
 void citenerg()
 {
-    for (int j=0; j<=6; j++)
+    for (int j=0; j<=9; j++)
         finE>>E[j];
 }
 void energie(double x)
@@ -1756,14 +2771,14 @@ void energie(double x)
     int j, ei, ef;
     cout<<"Introduceti energia initiala: ";
     cin>>x;
-    cout<<"Introduceti unitatea de masura initiala (cal/kcal/j/kj/kwh/wh/ws): ";
+    cout<<"Introduceti unitatea de masura initiala (cal/kcal/j/kj/kwh/wh/ws/mj/mcal/mkg): ";
     cin>>y;
-    for (j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
         if (stricmp(y,E[j])==0)
             ei=j;
-    cout<<"Introduceti unitatea de masura finala (cal/kcal/j/kj/kwh/wh/ws): ";
+    cout<<"Introduceti unitatea de masura finala (cal/kcal/j/kj/kwh/wh/ws/mj/mcal/mkg): ";
     cin>>yf;
-    for (j=0; j<=6; j++)
+    for (j=0; j<=9; j++)
         if (stricmp(yf,E[j])==0)
             ef=j;
     switch(ei)
@@ -1790,6 +2805,15 @@ void energie(double x)
         case 6:
             rez=x*4.1868;
             break;
+        case 7:
+            rez=x*0.000004187;
+            break;
+        case 8:
+            rez=x*0.000001;
+            break;
+        case 9:
+            rez=x*0.4296;
+            break;
         }
         break;
     }
@@ -1814,6 +2838,15 @@ void energie(double x)
             break;
         case 6:
             rez=x*4186.8;
+            break;
+        case 7:
+            rez=x*0.004187;
+            break;
+        case 8:
+            rez=x*0.001;
+            break;
+        case 9:
+            rez=x*429.6;
             break;
         }
         break;
@@ -1840,6 +2873,15 @@ void energie(double x)
         case 6:
             rez=x;
             break;
+        case 7:
+            rez=x*0.000001;
+            break;
+        case 8:
+            rez=x*0.0000002388;
+            break;
+        case 9:
+            rez=x*0.1026;
+            break;
         }
         break;
     }
@@ -1864,6 +2906,15 @@ void energie(double x)
             break;
         case 6:
             rez=x*1000;
+            break;
+        case 7:
+            rez=x*0.001;
+            break;
+        case 8:
+            rez=x*0.0002388;
+            break;
+        case 9:
+            rez=x*102.6;
             break;
         }
         break;
@@ -1890,6 +2941,15 @@ void energie(double x)
         case 6:
             rez=x*3600000;
             break;
+        case 7:
+            rez=x*3.6;
+            break;
+        case 8:
+            rez=x*0.8598;
+            break;
+        case 9:
+            rez=x*369400;
+            break;
         }
         break;
     }
@@ -1912,8 +2972,17 @@ void energie(double x)
         case 4:
             rez=x*0.001;
             break;
-        case 5:
+        case 6:
             rez=x*3600;
+            break;
+        case 7:
+            rez=x*0.0036;
+            break;
+        case 8:
+            rez=x*0.0008598;
+            break;
+        case 9:
+            rez=x*369.4;
             break;
         }
         break;
@@ -1939,6 +3008,117 @@ void energie(double x)
             break;
         case 5:
             rez=x*0.0002777777777777778;
+            break;
+        case 7:
+            rez=x*0.000001;
+            break;
+        case 8:
+            rez=x*0.0000002388;
+            break;
+        case 9:
+            rez=x*0.1026;
+            break;
+        }
+        break;
+    }
+    case 7:
+    {
+        switch (ef)
+        {
+        case 0:
+            rez=x*238800;
+            break;
+        case 1:
+            rez=x*238.8;
+            break;
+        case 2:
+            rez=x*1000000;
+            break;
+        case 3:
+            rez=x*1000;
+            break;
+        case 4:
+            rez=x*0.2778;
+            break;
+        case 5:
+            rez=x*277.8;
+            break;
+        case 6:
+            rez=x*1000000;
+            break;
+        case 8:
+            rez=x*0.2388;
+            break;
+        case 9:
+            rez=x*102600;
+            break;
+        }
+        break;
+    }
+    case 8:
+    {
+        switch (ef)
+        {
+        case 0:
+            rez=x*1000000;
+            break;
+        case 1:
+            rez=x*1000;
+            break;
+        case 2:
+            rez=x*4187000;
+            break;
+        case 3:
+            rez=x*4187;
+            break;
+        case 4:
+            rez=x*1.163;
+            break;
+        case 5:
+            rez=x*1163;
+            break;
+        case 6:
+            rez=x*4187000;
+            break;
+        case 7:
+            rez=x*4.187;
+            break;
+        case 9:
+            rez=x*429600;
+            break;
+        }
+        break;
+    }
+    case 9:
+    {
+        switch (ef)
+        {
+        case 0:
+            rez=x*2.328;
+            break;
+        case 1:
+            rez=x*0.002328;
+            break;
+        case 2:
+            rez=x*9.746;
+            break;
+        case 3:
+            rez=x*0.009746;
+            break;
+        case 4:
+            rez=x*0.000002707;
+            break;
+        case 5:
+            rez=x*0.002707;
+            break;
+        case 6:
+            rez=x*9.746;
+            break;
+        case 7:
+            rez=x*0.000009746;
+            break;
+        case 8:
+            rez=x*0.000002328;
             break;
         }
         break;
@@ -1990,7 +3170,7 @@ void combustibil (double x)
             rez=x*0.354;
             break;
         case 6:
-            rez=62,14/x;
+            rez=62.14/x;
             break;
         case 7:
             rez=x*1.609;
@@ -2249,12 +3429,13 @@ void meniu (int o)
     case 10:
         citenerg();
         energie(x);
+        break;
 
     case 11:
         citirecomb();
         combustibil(x);
 
-        //default:exit;
+    default: cout<<"Not a valid choice. Choose again.";
     }
 }
 
