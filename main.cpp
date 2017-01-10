@@ -26,7 +26,7 @@ void citirel()
 }
 void lungime(float x)
 {
-    float rez;
+    double rez;
     int j, li, lf;
     char y[3], yf[3];
     cout<<"Introduceti lungimea initiala: ";
@@ -384,6 +384,7 @@ void lungime(float x)
         break;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<UnitateM[lf]<<endl;
 }
 
@@ -397,7 +398,7 @@ void arie (float x)
 {
     char y[5], yf[5];
     int j, ai, af;
-    float rez;
+    double rez;
     cout<<"Introduceti aria initiala: ";
     cin>>x;
     cout<<"Introduceti unitatea de masura initiala (km^2/hm^2/dam^2/m^2/dm^2/cm^2/mm^2/ft^2/in^2/yd^2): ";
@@ -753,6 +754,7 @@ void arie (float x)
         break;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<UnitateA[af]<<endl;
 }
 
@@ -1121,6 +1123,7 @@ void volum(float x)
         break;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<UnitateV[vf]<<endl;
 }
 
@@ -1131,7 +1134,7 @@ void cittemp()
 }
 void temperatura(float x)
 {
-    float tx, rez;
+    double tx, rez;
     int j, ti, tf;
     char y[3], yf[3];
     cout<<"Introduceti temperatura initiala: ";
@@ -1201,7 +1204,7 @@ void masa(float x)
 {
     char y[3], yf[3];
     int j, mi, mf;
-    float rez;
+    double rez;
     cout<<"Introduceti greutatea initiala: ";
     cin>>x;
     cout<<"Introduceti unitatea de masura initiala (mg/g/kg/t/lb/av/troy): ";
@@ -1328,6 +1331,7 @@ void masa(float x)
             rez=x*1.097144570450978;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<M[mf]<<endl;
 }
 void cittimp()
@@ -1338,7 +1342,7 @@ void cittimp()
 void timp (float x)
 {
     char y[8], yf[8];
-    float rez;
+    double rez;
     int ti, tf, j;
     cout<<"Introduceti timpul initial: ";
     cin>>x;
@@ -1701,6 +1705,7 @@ void timp (float x)
         }
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<T[tf]<<endl;
 }
 void citpres()
@@ -2014,6 +2019,7 @@ void presiune (float x)
         }
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<P[pf]<<endl;
 }
 void citirevit()
@@ -2385,6 +2391,7 @@ void viteza(float x)
         }
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<V[vf]<<endl;
 }
 void citdens()
@@ -2757,6 +2764,7 @@ void densitate(float x)
         break;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<D[df]<<endl;
 }
 void citenerg()
@@ -3124,6 +3132,7 @@ void energie(double x)
         break;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<E[ef]<<endl;
 }
 void citirecomb()
@@ -3375,6 +3384,7 @@ void combustibil (double x)
         break;
     }
     }
+    cout<<fixed;
     cout<<rez<<" "<<COMB[cf]<<endl;
 }
 
@@ -3434,8 +3444,8 @@ void meniu (int o)
     case 11:
         citirecomb();
         combustibil(x);
+        break;
 
-    default: cout<<"Not a valid choice. Choose again.";
     }
 }
 
