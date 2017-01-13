@@ -1192,6 +1192,7 @@ void temperatura(float x)
     }
     break;
     }
+    cout<<fixed;
     cout<<rez<<" "<<TEMP[tf]<<endl;
 }
 
